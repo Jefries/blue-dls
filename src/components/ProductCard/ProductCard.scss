@@ -24,9 +24,9 @@
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     overflow: hidden;
-  }
-  &.disabled > img {
-    opacity: 0.5;
+    &.disabled  {
+      opacity: 0.5;
+    }
   }
 
   .product-title {

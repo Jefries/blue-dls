@@ -6,7 +6,8 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions"
+    "@storybook/addon-interactions",
+    "@storybook/addon-postcss"
   ],
   "framework": "@storybook/react",
   "core": {
@@ -14,5 +15,17 @@ module.exports = {
   },
   "features": {
     "storyStoreV7": true
-  }
-}
+  },
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      loader: require.resolve("babel-loader"),
+      options: {
+        presets: [["react-app", { flow: false, typescript: true }]],
+      },
+    });
+    config.resolve.extensions.push(".ts", ".tsx");
+
+    return config;
+  },
+};
